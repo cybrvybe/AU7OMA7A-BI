@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import AlgoUnit, Campaign, Organization, Process, Product, Role, Service, Venture
+from .models import AlgoUnit, Campaign, Feature, Organization, Process, Product, Project, Role, Service, Venture
 # Register your models here.
 models = [
     Organization,
@@ -9,7 +9,9 @@ models = [
     Product,
     Service,
     Campaign,
-    Role
+    Role,
+    Feature,
+    Project
 ]
 for model in models: 
     admin.site.register(model)
