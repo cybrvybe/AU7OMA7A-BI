@@ -44,7 +44,13 @@ INSTALLED_APPS = [
     "general_business",
     "reporting",
     "rest_framework",
-    "corsheaders"
+    "corsheaders",
+    "processes",
+    "project",
+    "product",
+    "marketing",
+    "sales",
+    "career"
 
 ]
 CORS_ORIGIN_WHITELIST = [

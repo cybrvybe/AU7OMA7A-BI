@@ -1,35 +1,31 @@
 from rest_framework import serializers
-from .models import Organization, Role, Venture
-class OrganizationSerializer(
+from .models import Product, Service, Feature
+
+class ProductSerializer(
     serializers.ModelSerializer
 ):
-    class Meta:
-        model = Organization
-        fields = (
-            'title',
-            "subtitle",
-            "parent_organization"
-        )
-
-
-class VentureSerializer(
-    serializers.ModelSerializer
-):
-    class Meta:
-        model = Venture
+    class Meta: 
+        model = Product
         fields = (
             "title",
             "subtitle",
             "parent_organization"
         )
-
-
-class RoleSerializer(serializers.ModelSerializer):
+class ServiceSerializer(
+    serializers.ModelSerializer
+):
     class Meta:
-        model = Role
+        model = Service
         fields = (
             "title",
             "subtitle",
             "parent_organization"
         )
-
+class FeatureSerializer(serializers.ModelSerializer):
+    class Meta: 
+        model = Feature
+        fields = (
+            "title",
+            "subtitle", 
+            "parent_organization"
+        )

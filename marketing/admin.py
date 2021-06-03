@@ -1,11 +1,11 @@
 from django.contrib import admin
-from .models import Organization, Role, Venture
+from .models import Brand, Campaign, SocialMediaAccount
 # Register your models here.
 models = [
-    Organization,
-    Venture,
-    Role
+    Campaign,
+    SocialMediaAccount,
+    Brand
 ]
-  
+
 for model in models: 
     admin.site.register(model)

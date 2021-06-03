@@ -1,5 +1,6 @@
 from django.db import models
-from general_business.models import Organization, Product, Service
+from general_business.models import Organization, Role
+from product.models import Product, Service
 # Create your models here.
 class Budget(models.Model):
     title = models.CharField(
@@ -67,3 +68,59 @@ class Expense(models.Model):
     )
     def __str__(self):
         return f"{self.title}, {self.subtitle}: ${self.cost} every {self.recurrence_freq}"
+
+class IncomeStream(models.Model):
+    title = models.CharField(
+        max_length = 300,
+        verbose_name = "Income Source Title",
+        null = True,
+        blank = True
+    )
+    parent_organization = models.ForeignKey(
+        to = Organization,
+        on_delete = models.CASCADE, 
+        blank = True,
+        null = True
+    )
+    parent_product = models.ForeignKey(
+        to = Product,
+        on_delete = models.CASCADE,
+        blank = True,
+        null = True
+    )
+    parent_service = models.ForeignKey(
+        to = Service,
+        on_delete = models.CASCADE,
+        null = True,
+        blank = True
+    )
+    parent_role = models.ForeignKey(
+        to = Role,
+        on_delete = models.CASCADE,
+        blank = True,
+        null = True
+
+    )
+    def __str__(self):
+        return f"{self.title}: {self.parent_organization}"
+class IncomeEvent(models.Model):
+    uploaded_at = models.DateTimeField(
+        auto_now = True
+    )
+    amount = models.FloatField(
+        verbose_name = "Income Amount ($)"
+    )
+    parent_income_stream = models.ForeignKey(
+        to = IncomeStream,
+        on_delete = models.CASCADE
+    )
+    is_recurring = models.BooleanField(
+        verbose_name = "Is this income event recurring?"
+    )
+    recurrence_freq = models.CharField(
+        max_length = 300,
+        verbose_name = "What is the recurrence frequency of this income event in x weeks, months, or years?"
+    )
+
+    def __str__(self):
+        return f"${self.amount}, {self.uploaded_at} // {self.parent_income_stream}"
