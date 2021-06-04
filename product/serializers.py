@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Product, Service, Feature
+from .models import Product, Service
 
 class ProductSerializer(
     serializers.ModelSerializer
@@ -9,6 +9,7 @@ class ProductSerializer(
         fields = (
             "title",
             "subtitle",
+            "uploaded_at",
             "parent_organization"
         )
 class ServiceSerializer(
@@ -18,14 +19,8 @@ class ServiceSerializer(
         model = Service
         fields = (
             "title",
-            "subtitle",
+            "is_recurring",
+            "uploaded_at",
             "parent_organization"
-        )
-class FeatureSerializer(serializers.ModelSerializer):
-    class Meta: 
-        model = Feature
-        fields = (
-            "title",
-            "subtitle", 
-            "parent_organization"
+
         )

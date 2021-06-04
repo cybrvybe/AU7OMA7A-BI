@@ -21,7 +21,7 @@ class Company(models.Model):
         verbose_name = "What is the company type (LLC, S-Corp, etc)?",
         null = True,
         blank = True
-    ),
+    )
     company_size = models.CharField(
         max_length = 300,
         verbose_name = "What is the company size (SME, Startup, Corporate Behemoth, etc)?",

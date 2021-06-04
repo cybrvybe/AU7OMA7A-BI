@@ -1,10 +1,9 @@
 from django.contrib import admin
-from .models import Feature, Product, Service
+from .models import Product, Service
 # Register your models here.
 models = [
     Product,
-    Service,
-    Feature
+    Service
 ]
 for model in models: 
     admin.site.register(model)

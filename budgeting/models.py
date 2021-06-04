@@ -5,7 +5,9 @@ from product.models import Product, Service
 class Budget(models.Model):
     title = models.CharField(
         max_length = 250,
-        verbose_name = "Budget Title"
+        verbose_name = "Budget Title",
+        null = True,
+        blank = True
     )
     parent_organization = models.ForeignKey(
         to = Organization,
@@ -31,6 +33,8 @@ class Expense(models.Model):
     title = models.CharField(
         max_length = 250,
         verbose_name = "Expense Title",
+        null = True,
+        blank = True
 
     )
     subtitle = models.CharField(
@@ -65,6 +69,11 @@ class Expense(models.Model):
     )
     is_asset = models.BooleanField(
         verbose_name = "Is this an asset?"
+    )
+    is_essential = models.BooleanField(
+        verbose_name = "Is this expense essential?",
+        null = True,
+        blank = True
     )
     def __str__(self):
         return f"{self.title}, {self.subtitle}: ${self.cost} every {self.recurrence_freq}"

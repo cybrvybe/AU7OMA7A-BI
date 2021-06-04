@@ -5,7 +5,7 @@ class Process(models.Model):
     title = models.CharField(
         max_length=300,
         verbose_name = "Process Title"
-    ),
+    )
     subtitle = models.CharField(
         max_length = 500,
         verbose_name = "Short Description"
