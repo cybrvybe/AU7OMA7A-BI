@@ -1,11 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
+import ModelDashboard from './components/dashboard/dashboard';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <h1> yo this is me</h1>
+        <ModelDashboard>
+          
+        </ModelDashboard>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
