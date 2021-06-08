@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
-from .sensitive import postgres_password
+from .sensitive import postgres_password, wifi_ip
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-sl2$vs!7ks&9@+o5(h7jz6rl71k66fmua_4jh0@vem4#iv)%m9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    wifi_ip
+]
 
 
 # Application definition
