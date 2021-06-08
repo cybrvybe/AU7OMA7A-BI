@@ -1,0 +1,12 @@
+.dockerignore
+__pycache__/
+*.py[cod]
+
+# Django stuff
+db.sqlite3
+
+# Editor files
+.vscode/
+npm_modules/
+frontend/node_modules
+package-lock.json

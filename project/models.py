@@ -1,14 +1,11 @@
 from django.db import models
 from general_business.models import Organization
 from product.models import Product, Service
+from content.models import AbstractModel
 # Create your models here.
 #This class stores a business Project
-class Project(models.Model):
-    title = models.CharField(
-        max_length = 300,
-        verbose_name = "Project Title"
+class Project(AbstractModel):
 
-    )
     subtitle = models.CharField(
         max_length = 500,
         verbose_name = "Short Description",
@@ -33,11 +30,8 @@ class Project(models.Model):
     )
     def __str__(self):
         return f"{self.title}, {self.parent_organization}, {self.subtitle}"
-class Feature(models.Model):
-    title = models.CharField(
-        max_length = 300,
-        verbose_name = "Feature Title"
-    )
+class Feature(AbstractModel):
+    
     subtitle = models.CharField(
         max_length = 500,
         verbose_name = "Short Description",

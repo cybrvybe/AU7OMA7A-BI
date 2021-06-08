@@ -1,14 +1,17 @@
 from django.db import models
 from general_business.models import Organization, Role
 from product.models import Product, Service
+from content.models import AbstractModel
 # Create your models here.
-class Budget(models.Model):
-    title = models.CharField(
-        max_length = 250,
-        verbose_name = "Budget Title",
+class AbstractFinEvent(AbstractModel):
+    amount = models.FloatField(
+        verbose_name = "Amount ($)",
         null = True,
-        blank = True
+        blank = True,
+        default = 0
     )
+   
+class Budget(AbstractModel):
     parent_organization = models.ForeignKey(
         to = Organization,
         on_delete = models.CASCADE,
@@ -29,13 +32,16 @@ class Budget(models.Model):
     )
     def __str__(self):
         return f"{self.title}, {self.parent_organization}"
-class Expense(models.Model):
-    title = models.CharField(
-        max_length = 250,
-        verbose_name = "Expense Title",
-        null = True,
-        blank = True
-
+class AbstractBudgetItem(AbstractFinEvent):
+    parent_budget = models.ForeignKey(
+        to = Budget,
+        on_delete = models.CASCADE
+    )
+    is_prospective = models.BooleanField(
+        default = True
+    )
+    live_datetime = models.DateTimeField(
+        auto_now = False
     )
     subtitle = models.CharField(
         max_length = 300,
@@ -43,15 +49,8 @@ class Expense(models.Model):
         null = True,
         blank = True
     )
-    parent_budget = models.ForeignKey(
-        to = Budget,
-        on_delete = models.CASCADE
-    )
-    cost = models.FloatField(
-        verbose_name = "Cost ($)",
-        null = True,
-        blank = True,
-    )
+class Expense(AbstractBudgetItem):
+  
     is_recurring = models.BooleanField(
         verbose_name = "Is this payment recurring?"
     )
@@ -61,9 +60,7 @@ class Expense(models.Model):
         blank = True,
         null = True
     )
-    is_prospective = models.BooleanField(
-        verbose_name = "Is this payment prospective?"   
-    )
+    
     is_business_expense = models.BooleanField(
         verbose_name = "Is this a business expense?"
     )
@@ -112,23 +109,24 @@ class IncomeStream(models.Model):
     )
     def __str__(self):
         return f"{self.title}: {self.parent_organization}"
-class IncomeEvent(models.Model):
+class IncomeEvent(AbstractFinEvent):
     uploaded_at = models.DateTimeField(
         auto_now = True
     )
-    amount = models.FloatField(
-        verbose_name = "Income Amount ($)"
-    )
     parent_income_stream = models.ForeignKey(
         to = IncomeStream,
-        on_delete = models.CASCADE
+        on_delete = models.CASCADE,
+        null = True,
+        blank = True
     )
     is_recurring = models.BooleanField(
         verbose_name = "Is this income event recurring?"
     )
     recurrence_freq = models.CharField(
         max_length = 300,
-        verbose_name = "What is the recurrence frequency of this income event in x weeks, months, or years?"
+        verbose_name = "What is the recurrence frequency of this income event in x weeks, months, or years?",
+        null = True,
+        blank = True
     )
 
     def __str__(self):

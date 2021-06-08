@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
-
+from .sensitive import postgres_password
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -51,7 +51,9 @@ INSTALLED_APPS = [
     "product",
     "marketing",
     "sales",
-    "career"
+    "career",
+    "content",
+    "time_manage"
     
 
 ]
@@ -103,9 +105,9 @@ NEOMODEL_MAX_POOL_SIZE = 50
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': 'personal_business',
         'USER': 'postgres',
-        'PASSWORD': 'techMa$ter2500',
+        'PASSWORD': postgres_password,
         'HOST': 'localhost',
         'PORT': '5432'
     }

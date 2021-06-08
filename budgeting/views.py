@@ -2,7 +2,6 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from .serializers import BudgetSerializer, ExpenseSerializer
 from .models import Budget, Expense, IncomeEvent, IncomeStream
-# Create your views here.
 
 class BudgetView(viewsets.ModelViewSet):
     serializer_class = BudgetSerializer

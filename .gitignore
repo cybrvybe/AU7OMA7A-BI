@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+sensitive.py
+project_dir/sensitive.py
+/project_dir/sensitive.py

@@ -57,7 +57,6 @@ class CareerContact(models.Model):
         blank = True
     )
     phone_number = models.IntegerField(
-        max_length = 9,
         null = True,
         blank = True
     )
