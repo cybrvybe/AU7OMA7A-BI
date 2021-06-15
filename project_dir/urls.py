@@ -122,6 +122,15 @@ router_item_list = [
         "view": project_views.FeatureView,
         "singular": "feature"
     }
+    
+]
+imported_views = [
+    {
+        "plural": "expense_time_interval_cost_breakdowns",
+        "view": budgeting_views.ExpenseTimeIntervalCostBreakdownView,
+        "singular": "expense_time_interval_cost_breakdown"
+
+    }
 ]
 
 for router_item in router_item_list:
@@ -138,3 +147,11 @@ urlpatterns = [
         include(router.urls)
     )
 ]
+for view in imported_views:
+    new_path = path(
+        "api/" + view["plural"] + "/",
+        view["view"].as_view(),
+        name = view["singular"]
+
+    )
+    urlpatterns.append(new_path)

@@ -55,7 +55,9 @@ INSTALLED_APPS = [
     "sales",
     "career",
     "content",
-    "time_manage"
+    "time_manage",
+    "metrics",
+    "modules"
     
 
 ]

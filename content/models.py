@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import deletion
 from django.db.models.deletion import DO_NOTHING
 from marketing.models import SocialMediaAccount
 from datetime import datetime
@@ -22,7 +23,13 @@ class AbstractModel(models.Model):
     #formats the object display name so it displays nicely in the django admin. 
     def __str__(self):
         return f"{self.title}"
-        
+class AbstractDescModel(AbstractModel):
+    description = models.CharField(
+        max_length = 500,
+        null = True,
+        blank = True
+    )
+
 class AbstractImgModel(AbstractModel):
     png_file = models.FileField(
         verbose_name = "PNG file",
@@ -96,5 +103,50 @@ class Tweet(AbstractModel):
         to = TwitterThread,
         on_delete = models.DO_NOTHING
     )
+
+class Book(AbstractModel):
+    description = models.CharField(
+        max_length = 500, 
+        null = True,
+        blank = True
+    )
+class Chapter(AbstractDescModel):
+
+    parent_book = models.ForeignKey(
+        to = Book,
+        on_delete = models.CASCADE
+    )
+class ChapterSection(AbstractDescModel):
+    parent_chapter = models.ForeignKey(
+        to = Chapter,
+        on_delete = models.CASCADE
+    )
+class ChapterIntroQuote(AbstractDescModel):
+    parent_chapter = models.ForeignKey(
+        to = Chapter,
+        on_delete = models.CASCADE,
+        null = True,
+        blank = True
+    )
+class Paragraph(AbstractDescModel):
+    body = models.CharField(
+        max_length = 1000000,
+        null = True,
+        blank = True
+    )
+    parent_chapter_section = models.ForeignKey(
+        to = ChapterSection,
+        on_delete = models.CASCADE,
+        null = True,
+        blank = True
+    )
+    parent_chapter = models.ForeignKey(
+        null = True,
+        blank = True,
+        to = Chapter,
+        on_delete = models.CASCADE
+    )
+
+
 
    

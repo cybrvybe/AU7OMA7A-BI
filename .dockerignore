@@ -1,7 +1,12 @@
 .dockerignore
 __pycache__/
 *.py[cod]
+#Sensitive Data
+/project_dir/sensitive.py
+project_dir/sensitive.py
 
+#notes
+specifications.txt
 # Django stuff
 db.sqlite3
 

@@ -1,8 +1,9 @@
-from analytics.models import AutonomousAnalysis
+from metrics.models import Metric
 from django.contrib import admin
-from .models import AutonomousAnalysis
+from .models import Metric
+
 models = [
-    AutonomousAnalysis
+    Metric
 ]
 # Register your models here.
 for model in models:

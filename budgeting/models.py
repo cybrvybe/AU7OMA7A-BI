@@ -35,13 +35,19 @@ class Budget(AbstractModel):
 class AbstractBudgetItem(AbstractFinEvent):
     parent_budget = models.ForeignKey(
         to = Budget,
-        on_delete = models.CASCADE
+        on_delete = models.CASCADE,
+        null = True,
+        blank = True
     )
     is_prospective = models.BooleanField(
-        default = True
+        default = True,
+        null = True,
+        blank = True
     )
     live_datetime = models.DateTimeField(
-        auto_now = False
+        auto_now = False,
+        blank = True,
+        null = True
     )
     subtitle = models.CharField(
         max_length = 300,
@@ -54,18 +60,30 @@ class Expense(AbstractBudgetItem):
     is_recurring = models.BooleanField(
         verbose_name = "Is this payment recurring?"
     )
+    RECURRENCE_FREQ_CHOICES = [
+        ("daily","daily"),
+        ("monthly", "monthly"),
+        ("quarterly","quarterly"),
+        ("biannual","biannual"),
+        ("annual", "annual")
+    ]
     recurrence_freq = models.CharField(
         verbose_name = "What is the recurrence frequency of this payment? (x weeks, x months, x years)",
         max_length = 300,
         blank = True,
-        null = True
+        null = True,
+        choices = RECURRENCE_FREQ_CHOICES
     )
     
     is_business_expense = models.BooleanField(
-        verbose_name = "Is this a business expense?"
+        verbose_name = "Is this a business expense?",
+        null = True,
+        blank = True
     )
     is_asset = models.BooleanField(
-        verbose_name = "Is this an asset?"
+        verbose_name = "Is this an asset?",
+        null = True,
+        blank = True
     )
     is_essential = models.BooleanField(
         verbose_name = "Is this expense essential?",
@@ -73,7 +91,7 @@ class Expense(AbstractBudgetItem):
         blank = True
     )
     def __str__(self):
-        return f"{self.title}, {self.subtitle}: ${self.cost} every {self.recurrence_freq}"
+        return f"{self.title}, {self.subtitle}: ${self.amount} every {self.recurrence_freq}"
 
 class IncomeStream(models.Model):
     title = models.CharField(
@@ -128,6 +146,11 @@ class IncomeEvent(AbstractFinEvent):
         null = True,
         blank = True
     )
+    is_prospective = models.BooleanField(
+        verbose_name = "Is this a future income event?",
+        null = True,
+        blank = True
+    )
 
     def __str__(self):
-        return f"${self.amount}, {self.uploaded_at} // {self.parent_income_stream}"
+        return f"${self.amount} every {self.recurrence_freq}, {self.title} // IS RECURRING: {self.is_recurring}"

@@ -1,8 +1,7 @@
-from analytics.models import AutonomousAnalysis
 from django.contrib import admin
-from .models import AutonomousAnalysis
+from .models import Module
 models = [
-    AutonomousAnalysis
+    Module
 ]
 # Register your models here.
 for model in models:

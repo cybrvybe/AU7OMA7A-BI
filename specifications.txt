@@ -1,0 +1,24 @@
+Specifications
+[Meta]
+1. Automation
++ Code Generation
++ Test serializers.
+[Budgeting App]
+
+1. Backend
++ Costs and Expenses
+    - Display most recent upcoming expenses through API call
+    - Calculate and display ERCoL(Essential Recurrent Cost of Living)
+    - Calculate and display TRCoL (Total Recurrent Cost of Living) for every recurrence_freq unit.
+    - Filter and search through expenses list. 
++ Income and Savings
+    - Calulate and display TLC (total liquid capital)
++ Cost-Benefit Analysis
+    - Test relationship between value chains of expenses and income.
+    - Test relationship between time series comparison of expenses and income.
+    - 
+2. Models
+3. Tests
+4. Views
+5. Serializers
+
