@@ -1,52 +1,43 @@
 
 from django.db import models
+from django.db.models.deletion import DO_NOTHING
+from content.models import AbstractModel, AbstractDescModel
 from general_business.models import Organization
 
-
-# Create your models here.
-class Product(models.Model):
-    title = models.CharField(
-        max_length = 300,
-        verbose_name = "Product Title",
-        null = True
-    )
+class Product(AbstractModel):
+    
     subtitle = models.CharField(
-        max_length = 300,
-        verbose_name = "Short Description",
+        max_length =500,
         null = True,
         blank = True
-    )
-    uploaded_at = models.DateTimeField(
-        auto_now = True
     )
     parent_organization = models.ForeignKey(
         to = Organization,
-        on_delete = models.CASCADE,
+        on_delete = DO_NOTHING
+    )
+class Service(AbstractModel):
+    parent_organization = models.ForeignKey(
+        to = Organization,
+        on_delete = DO_NOTHING
+    )
+class PriceObj(AbstractModel):
+    amount  = models.IntegerField(
         null = True,
         blank = True
-    )
-    def __str__(self):
-        return f"{self.title}, {self.subtitle}, {self.parent_organization}"
-class Service(models.Model):
-    title = models.CharField(
-        max_length = 300,
-        verbose_name = "Service Title",
-        blank = True,
-        null = True
     )
     is_recurring = models.BooleanField(
-        verbose_name = "Is this service recurring?",
-    
+        verbose_name = "Is the price a recurring amount?"
     )
-    uploaded_at = models.DateTimeField(
-        auto_now = True
+    RECURRENCE_FREQ_CHOICES = (
+        ("daily", "daily"),
+        ("weekly", "weekly"),
+        ("monthly", "monthly"),
+        ("annually", "annually")
     )
-    parent_organization = models.ForeignKey(
-        to = Organization,
-        on_delete = models.CASCADE,
+    reccurence_freq = models.CharField(
+        choices = RECURRENCE_FREQ_CHOICES,
         null = True,
-        blank = True
-    )
-    def __str__(self):
-        return f"{self.title}, {self.subtitle}"
+        blank = True,
+        max_length = 500
 
+    )

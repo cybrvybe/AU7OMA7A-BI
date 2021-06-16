@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .models import Product, Service
-from .serializers import ProductSerializer, ServiceSerializer
+from .models import Product, PriceObj, Service
+from .serializers import ProductPriceObjSerializer, ProductSerializer, ServiceSerializer
 # Create your views here.
 
 class ProductView(viewsets.ModelViewSet):
@@ -12,3 +12,6 @@ class ServiceView(viewsets.ModelViewSet):
     serializer_class = ServiceSerializer
     queryset = Service.objects.all()
 
+class ProductPriceObjView(viewsets.ModelViewSet):
+    serializer_class = ProductPriceObjSerializer
+    queryset = PriceObj.objects.all()
