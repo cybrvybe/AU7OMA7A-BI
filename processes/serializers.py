@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Process, AlgoUnit
+from .models import Process
 class ProcessSerializer(
     serializers.ModelSerializer
 ):
@@ -10,11 +10,3 @@ class ProcessSerializer(
             "subtitle",
             "parent_organization"
         )
-class AlgoUnitSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = AlgoUnit
-        fields = (
-            "title",
-            "subtitle",
-            "parent_organization"
-        )   

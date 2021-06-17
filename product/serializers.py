@@ -9,7 +9,7 @@ class ProductSerializer(
         fields = (
             "title",
             "subtitle",
-            "uploaded_at",
+            "created_at",
             "parent_organization"
         )
 class ServiceSerializer(
@@ -20,7 +20,7 @@ class ServiceSerializer(
         fields = (
             "title",
             "is_recurring",
-            "uploaded_at",
+            "created_at",
             "parent_organization"
 
         )

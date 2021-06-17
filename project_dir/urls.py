@@ -97,11 +97,6 @@ router_item_list = [
         "singular": "process"
     },
     {
-        "plural": r"algo_units",
-        "view": process_views.AlgoUnitView,
-        "singular": "algo_unit"
-    },
-    {
         "plural": r"products",
         "view": product_views.ProductView,
         "singular": "product"
