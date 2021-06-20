@@ -1,0 +1,11 @@
+@import "../style/_colors.scss";
+@import "../style/_general.scss";
+
+.dirTree{
+    background-color: $darkblack;
+    height:100rem;
+    display: flex nowrap;
+    overflow-y: scroll;
+    
+    
+}

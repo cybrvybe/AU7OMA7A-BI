@@ -1,0 +1,13 @@
+
+@mixin posNeomorphicDiv{
+    background-color: rgb(5, 5, 5);
+    border: 0.05rem solid rgb(20, 20, 20);
+    box-shadow: 0.5rem 0.5rem 2rem rgb(15, 15, 15), inset 0.5rem 0.5rem 2rem rgb(15,15,15);
+
+
+}
+@mixin negNeomorphicDiv{
+    @include posNeomorphicDiv;
+    box-shadow: 0.5rem 0.5rem
+
+}

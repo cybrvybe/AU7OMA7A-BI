@@ -1,0 +1,40 @@
+@import "../style/general";
+@import "../style/colors";
+
+.sidebarNav{
+    @include posNeomorphicDiv;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+
+    position:fixed;
+    top: 0rem;
+    bottom: 0rem;
+    z-index: 0;
+    left: 0rem;
+    
+    
+    
+    
+}
+.navIcon{
+    color: rgb(201, 201, 201);
+    padding: 1rem;
+}
+.sidebarWrapper{
+    display: flex;
+    justify-content: left;
+
+}
+.tabList{
+    list-style: none;
+}
+
+.tabPanel{
+    background-color: green;
+    
+}
+
+.innerTabPanelWrapper{
+    position:relative;
+}

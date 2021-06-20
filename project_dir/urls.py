@@ -23,6 +23,7 @@ from marketing import views as marketing_views
 from processes import views as process_views
 from product import views as product_views
 from project import views as project_views
+from modules import views as module_views
 
 router = routers.DefaultRouter()
 router_item_list = [
@@ -116,6 +117,11 @@ router_item_list = [
         "plural": r"features",
         "view": project_views.FeatureView,
         "singular": "feature"
+    },
+    {
+        "plural": r"modules",
+        "view": module_views.ModuleView,
+        "singular": "module"
     }
     
 ]
