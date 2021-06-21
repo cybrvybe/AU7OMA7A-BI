@@ -7,6 +7,7 @@ import "./dir-tree.scss";
 export default class MainDirTree extends React.Component{
     state = {
         modules: [],
+        dirTreeFolders: [],
         error: null,
         isLoading: true
     }
@@ -22,6 +23,22 @@ export default class MainDirTree extends React.Component{
                     modules: data,
                     isLoading: false
                 }
+            )
+        )
+        .then(
+            fetch(
+                "http://192.168.1.149:8000/api/dir_tree_folders/"
+            )
+            .then(
+                response => response.json()
+            )
+            .then(
+                data => this.setState(
+                    {
+                        dirTreeFolders: data,
+                        isLoading: false
+                    }
+                )
             )
         )
         .catch(

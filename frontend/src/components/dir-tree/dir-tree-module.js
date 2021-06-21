@@ -12,9 +12,9 @@ export default class DirTreeModule extends React.Component{
                 <FontAwesomeIcon
                     icon = {icon_cdn_class}
                 >
-                <h1>{title}</h1>
 
                 </FontAwesomeIcon>
+                <h4>{title}</h4>
             </div>
         )
     }

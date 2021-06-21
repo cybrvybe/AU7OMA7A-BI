@@ -2,10 +2,11 @@
 @import "../style/_general.scss";
 
 .dirTree{
-    background-color: $darkblack;
+    background-color: $darkestblack;
     height:100rem;
     display: flex nowrap;
     overflow-y: scroll;
+    margin-left: auto;
     
     
 }
