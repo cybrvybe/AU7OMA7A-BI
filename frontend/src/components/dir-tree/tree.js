@@ -1,78 +1,142 @@
 
+import axios from "axios";
+import React from "react";
 
+export default class Tree extends React.Component{
+    constructor(props) {
+        super(props);
 
-/*Gets list of modules in order to create default workspace directory*/
-
-async function getModules(){
-    let url = "http://192.168.1.149:8000/api/modules/";
-    try{
-        let res = await fetch(url);
-        return await res.json();
+        this.state = {
+            modules: [],
+            dir_tree: [],
+            module_paths: [],
+            bots: [],
+            reports: [],
+            isLoading: true
+        };
     }
-    catch(error){
-        console.log(error);
-    }
-}
-function getModuleNames(modules){
-    const modules = getModules();
-    const module_titles = [];
-    for (module of modules){
-        const module_title = module["title"];
-        module_titles.push(module_title);
-    }
-    return module_titles;
-}
-function getModulePaths(){
-    const module_names = getModuleNames();
-    const prefix = "/root/";
-    const module_paths = [];
-    for (module_name of module_names){
-        const module_path = prefix + module_name;
-        module_paths.push(module_path);
-    }
-    return module_paths;
-}
-function getModuleDirs(module_paths){
-    const trees = [];
-    for (module_path of module_paths){
-        const tree = {
-            module_path: {
-                path: module_path,
-                type: "module",
-                children: [
-                    module_path + "/bots",
-                    module_path + "/data_objects",
-                    module_path + "/reports"
-                ]
+    
+    async componentDidMount(){
+        let modules_url = "http://192.168.1.149:8000/api/modules/";
+        let bots_url = "http://192.168.1.149:8000/api/bots/";
+        let reports_url = "http://192.168.1.149:8000/api/reports/";
+        /*let data_models_url = "http://192.168.1.149:8000/api/modules/";*/ 
+        
+        var modules_res = await axios.get(modules_url);
+        
+        var bots_res = await axios.get(bots_url);
+        
+        var reports_res = await axios.get(reports_url);
+        this.setState(
+            {
+                modules: Array.from(modules_res),
+                reports: Array.from(reports_res),
+                bots: Array.from(bots_res)
             }
+        )
+        
+    
+        
+        
+    };
+    
+  
+    getModulePaths(modules = []){
+        const module_titles = [];
+        for (const module of modules){
+            const module_title = module["title"];
+            module_titles.push(module_title);
         }
-        trees.push(tree);
+        const prefix = "/root/";
+        const module_paths = [];
+        for (const module_title of module_titles){
+            const module_path = prefix + module_title;
+            module_paths.push(module_path);
+        }
+        return module_paths;
+    };
+    
+    getModuleDirs(module_paths){
+        const trees = [];
+        for (const module_path of module_paths){
+            const tree = {
+                module_path: {
+                    path: module_path,
+                    type: "module",
+                    children: [
+                        module_path + "/bots",
+                        module_path + "/data_objects",
+                        module_path + "/reports"
+                    ]
+                }
+            }
+            trees.push(tree);
+        }
+        return trees
     }
-    return trees
-}
-function getDefaultWorkspaceDir(module_dirs){
-    modules = []
-    const tree_data = {
-        "/root": {
-            path: "/root",
-            type: "folder",
-            isRoot: true,
-            children: getModulePaths()
+    getBotFiles(){
+        const bot_files = [];
+    
+    };
+    getDefaultWorkspaceDir(module_dirs){
+    
+        const tree_data = {
+            "/root": {
+                path: "/root",
+                type: "folder",
+                isRoot: true,
+                children: this.getModulePaths()
+            }
+        };
+        
+        for (const module_dir of module_dirs){
+            tree_data.push(module_dir)
         }
+        return tree_data
+        
+    };
+    addToState(){
+        const module_paths = this.getModulePaths(this.state.modules);
+        const module_dirs = this.getModuleDirs(module_paths);
+        const def_workspace_dir = this.getDefaultWorkspaceDir(module_dirs);
 
+    };
+    
+
+    render(){
+        const modules = this.state.modules;
+        
+        return(
+            
+            
+            <div className = "mainTreeWrapper">
+                <h1>
+                    This is treeeeee
+                </h1>
+                {
+                    modules.map(
+                        module_path => (
+                            <div>
+                                <h2>
+                                    {
+                                        module_path
+                                    }
+                                </h2>
+                                <h2>
+                                    howdy boyhs
+                                </h2>
+                            </div>
+                        )
+                    )
+                }
+
+            </div>
+        )
     }
-    for (module_dir of module_dirs){
-        tree_data.push(module_dir)
-    }
-    return tree_data
+    
+    
     
 }
-const module_paths = getModulePaths();
-const module_dirs = getModuleDirs(module_paths);
-const default_workspace_dir = getDefaultWorkspaceDir(module_dirs);
-console.log(default_workspace_dir);
-
-
 
 
 

@@ -21,6 +21,11 @@ class Organization(models.Model):
         on_delete=models.CASCADE,
         blank = True
     )
+    is_owned_by_me = models.BooleanField(
+        default = True,
+        null =True,
+        blank = True
+    )
     def __str__(self):
         return f"{self.title}, {self.subtitle}"
 #This class stores business ventures (~mid-term goals)

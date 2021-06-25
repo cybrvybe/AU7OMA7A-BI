@@ -7,7 +7,7 @@ from metrics.models import Metric
 
 # Create your models here
 
-class AutonomousAnalysis(AbstractDescModel):
+class Bot(AbstractDescModel):
     function_class_name = models.CharField(
         verbose_name = "What is the class name of the corresponding view?",
         null = True,

@@ -29,12 +29,12 @@
 .tabList{
     list-style: none;
 }
-
 .tabPanel{
-    background-color: green;
-    
+    margin-left: 0.4rem;
+   
 }
-
 .innerTabPanelWrapper{
-    position:relative;
+    margin-left: auto;
+    background-color:red;
+    padding: 1rem;
 }

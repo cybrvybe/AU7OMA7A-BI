@@ -1,10 +1,10 @@
-from analytics.models import AutonomousAnalysis
+from analytics.models import Bot
 from django.shortcuts import render
-from .serializers import AutonomousAnalysisSerializer
+from .serializers import BotSerializer
 from rest_framework import viewsets
-from .models import AutonomousAnalysis
+from .models import Bot
 
 # Create your views here.
-class AutonomousAnalysisView(viewsets.ModelViewSet):
-    serializer_class = AutonomousAnalysisSerializer
-    queryset = AutonomousAnalysis.objects.all()
+class BotView(viewsets.ModelViewSet):
+    serializer_class = BotSerializer
+    queryset = Bot.objects.all()

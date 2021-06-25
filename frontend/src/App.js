@@ -6,6 +6,7 @@ import SidebarNav from './components/nav/nav-list';
 function App() {
   return (
     <div className="App">
+      <script src="js/reactjs/main.js" type = "text/babel"></script>
       <div className="App-header">
         
         

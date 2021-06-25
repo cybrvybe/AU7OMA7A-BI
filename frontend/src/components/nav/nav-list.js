@@ -8,13 +8,14 @@ import {
 } from "react-tabs";
 import dict from "../static-json";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import MainDirTree from "../dir-tree/dir-tree";
+import Tree from "../dir-tree/tree.js";
 export default class SidebarNav extends React.Component{
     render(){
         const{
             main_nav_items = [],
             secondary_nav_items = []
         } = this.props;
+       
 
         return(
             <div className = "sidebar">
@@ -66,13 +67,13 @@ export default class SidebarNav extends React.Component{
                         </div>
                     </TabPanel>
                     <TabPanel className = "tabPanel">
-                        <MainDirTree
+                        <Tree
                             native_folders = {dict["native_dir_tree_folders"]}
                             native_subfolders = {dict["native_dir_tree_subfolders"]}
                         
                         >
 
-                        </MainDirTree>
+                        </Tree>
                     </TabPanel>
                 </Tabs>
                

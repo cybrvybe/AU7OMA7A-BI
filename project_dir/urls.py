@@ -24,6 +24,9 @@ from processes import views as process_views
 from product import views as product_views
 from project import views as project_views
 from modules import views as module_views
+from nav import views as nav_views
+from analytics import views as bot_views
+from content import views as content_views
 
 router = routers.DefaultRouter()
 router_item_list = [
@@ -122,10 +125,40 @@ router_item_list = [
         "plural": r"modules",
         "view": module_views.ModuleView,
         "singular": "module"
+    },
+    {
+        "plural": r"workspaces",
+        "view": nav_views.WorkspaceView,
+        "singular": "workspace"
+    },
+    {
+        "plural": r"dir_tree_folders",
+        "view": nav_views.DirTreeFolderView,
+        "singular": "dir_tree_folder"
+    },
+    {
+        "plural": r"bots",
+        "view": bot_views.BotView,
+        "singular": "bot"
+    },
+    {
+        "plural": r"videos_content",
+        "view": content_views.VideoContentView,
+        "singular": "video_content"
+    },
+    {
+        "plural": r"techs",
+        "view": project_views.TechView,
+        "singular": "tech"
+    },
+    {
+        "plural": r"tasks",
+        "view": project_views.TaskView,
+        "singular": "task"
     }
     
 ]
-imported_views = [
+bot_router_item_list = [
     {
         "plural": "expense_time_interval_cost_breakdowns",
         "view": budgeting_views.ExpenseTimeIntervalCostBreakdownView,
@@ -148,7 +181,7 @@ urlpatterns = [
         include(router.urls)
     )
 ]
-for view in imported_views:
+for view in bot_router_item_list:
     new_path = path(
         "api/" + view["plural"] + "/",
         view["view"].as_view(),

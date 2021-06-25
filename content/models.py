@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import deletion
 from django.db.models.deletion import DO_NOTHING
+from django.db.models.enums import Choices
 from marketing.models import SocialMediaAccount
 from datetime import datetime
 #####################################################
@@ -53,6 +54,16 @@ class AbstractAudioModel(AbstractModel):
         null = True,
         blank = True
     )
+class AbstractVideoModel(AbstractModel):
+    video_file = models.FileField(
+        verbose_name = "Video File",
+        null = True,
+        blank = True
+    )
+    subtitle_transcription = models.JSONField(
+        blank = True,
+        null = True
+    )
 ####################################
 
 ######################################
@@ -103,6 +114,8 @@ class Tweet(AbstractModel):
         to = TwitterThread,
         on_delete = models.DO_NOTHING
     )
+    def __str__(self):
+        return f"{self.title} (Parent Thread: {self.parent_thread})"
 
 class Book(AbstractModel):
     description = models.CharField(
@@ -149,4 +162,19 @@ class Paragraph(AbstractDescModel):
 
 
 
-   
+#Video
+class VideoContent(AbstractVideoModel):
+    CHOICES = (
+        ("Tutorial", "Tutorial"),
+        ("Monologue", "Monologue"),
+        ("Podcast", "Podcast"),
+        ("Diagram Explanation", "Diagram Explanation")
+    )
+    type = models.CharField(
+        max_length = 500,
+        choices = CHOICES,
+        null = True,
+        blank  = True
+    )
+    def __str__(self):
+        return f"{self.title} | {self.type}"

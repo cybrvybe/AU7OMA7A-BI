@@ -1,6 +1,6 @@
 
 from rest_framework import serializers
-from .models import InstagramCarousel, InstagramCarouselPage, Story, Tweet, TwitterThread
+from .models import InstagramCarousel, InstagramCarouselPage, Story, Tweet, TwitterThread, VideoContent
 
 class InstagramCarouselSerializer(
     serializers.ModelSerializer
@@ -59,4 +59,16 @@ class TweetSerializer(
             "content_text",
             "date_uploaded",
             "parent_thread"
+        )
+class VideoContentSerializer(
+    serializers.ModelSerializer
+):
+    class Meta:
+        model = VideoContent
+        fields = (
+            "title",
+            "created_at",
+            "video_file",
+            "subtitle_transcription",
+            "type"
         )

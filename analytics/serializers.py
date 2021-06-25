@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from .models import AutonomousAnalysis
+from .models import Bot
 
-class AutonomousAnalysisSerializer(
+class BotSerializer(
     serializers.ModelSerializer
 ):
     class Meta:
-        model = AutonomousAnalysis
+        model = Bot
         fields = (
             "title",
             "description",

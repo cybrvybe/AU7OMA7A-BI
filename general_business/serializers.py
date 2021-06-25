@@ -8,7 +8,8 @@ class OrganizationSerializer(
         fields = (
             'title',
             "subtitle",
-            "parent_organization"
+            "parent_organization",
+            "is_owned_by_me"
         )
 
 

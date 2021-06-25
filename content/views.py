@@ -1,7 +1,7 @@
 from django.db.models import query
 from django.shortcuts import render
-from .models import InstagramCarouselPage, Story, InstagramCarousel, TwitterThread, Tweet
-from .serializers import InstagramCarouselSerializer, StorySerializer
+from .models import InstagramCarouselPage, Story, InstagramCarousel, TwitterThread, Tweet, VideoContent
+from .serializers import InstagramCarouselPageSerializer, InstagramCarouselSerializer, StorySerializer, TweetSerializer, TwitterThreadSerializer, VideoContentSerializer
 from rest_framework import viewsets
 
 #generic model api views
@@ -12,11 +12,14 @@ class InstagramCarouselView(viewsets.ModelViewSet):
     serializer_class = InstagramCarouselSerializer
     queryset = InstagramCarousel.objects.all()
 class InstagramCarouselPageView(viewsets.ModelViewSet):
-    serializer_class = InstagramCarouselPage
+    serializer_class = InstagramCarouselPageSerializer
     queryset = InstagramCarouselPage.objects.all()
 class TwitterThreadView(viewsets.ModelViewSet):
-    serializer_class = TwitterThread
+    serializer_class = TwitterThreadSerializer
     queryset = TwitterThread.objects.all()
-class Tweet(viewsets.ModelViewSet):
-    serializer_class = Tweet
+class TweetView(viewsets.ModelViewSet):
+    serializer_class = TweetSerializer
     queryset = Tweet.objects.all()
+class VideoContentView(viewsets.ModelViewSet):
+    serializer_class = VideoContentSerializer
+    queryset = VideoContent.objects.all()

@@ -57,7 +57,8 @@ INSTALLED_APPS = [
     "content",
     "time_manage",
     "metrics",
-    "modules"
+    "modules",
+    "nav"
     
 
 ]

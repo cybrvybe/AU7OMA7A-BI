@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Feature, Project
+from .models import Feature, Project, Task, Tech
 class ProjectSerializer(
     serializers.ModelSerializer
 ):
@@ -22,5 +22,30 @@ class FeatureSerializer(
             "description",
             "parent_product",
             "parent_service",
-            "parent_project"
+            "parent_project",
+            "subfeatures"
+        )
+class TechSerializer(
+    serializers.ModelSerializer
+):
+    class Meta:
+        model = Tech
+        fields = (
+            "title",
+            "created_at",
+            "tech_Category",
+            "parent_feature"
+        )
+class TaskSerializer(
+    serializers.ModelSerializer
+):
+    class Meta:
+        model = Task
+        fields = (
+            "title",
+            "created_at",
+            "parent_feature",
+            "subtask",
+            "previous_task",
+            "next_task"
         )

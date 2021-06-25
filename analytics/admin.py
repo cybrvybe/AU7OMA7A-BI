@@ -1,8 +1,8 @@
-from analytics.models import AutonomousAnalysis
+from analytics.models import Bot
 from django.contrib import admin
-from .models import AutonomousAnalysis
+from .models import Bot
 models = [
-    AutonomousAnalysis
+    Bot
 ]
 # Register your models here.
 for model in models:
