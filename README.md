@@ -1,4 +1,6 @@
 # AU7OMA7A-BI
+## Central User Story Map
+![central-user-story-map](https://user-images.githubusercontent.com/58280353/126083792-3ee029c3-af36-471e-9e9c-ee6558a4fdfe.PNG)
 
 ## Design Screenshots
 ![income-expense affordability](https://user-images.githubusercontent.com/58280353/123453484-77664800-d594-11eb-8437-28910422bc41.png)
